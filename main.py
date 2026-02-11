@@ -16,6 +16,7 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash 
 from helpers.get_year_helper import get_current_year
 from dotenv import load_dotenv
+from flask_migrate import Migrate
 import os
 
 load_dotenv()
@@ -30,13 +31,11 @@ CKEditor(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+migrate = Migrate(app, db)
 
 @login_manager.user_loader
 def load_user(user_id):
   return db.session.get(User, int(user_id))
-
-with app.app_context():
-  db.create_all()
 
 @app.route("/")
 def home():
