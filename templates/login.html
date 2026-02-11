@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% from "bootstrap5/form.html" import render_form %}
+{% block title %}Login{% endblock %} {% block content %}
+<header class="mb-3">
+  <div
+    class="container-fluid bg-image py-5"
+    style="
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('{{url_for('static', filename='img/login-bg.png')}}');
+    "
+  >
+    <div class="p-5 text-center text-white">
+      <div class="container py-5">
+        <h1 class="display-1 fw-bolder">Log In</h1>
+        <p class="col-lg-8 mx-auto lead">Welcome back, enjoy your stay!.</p>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-6 col-xl-5">
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% endfor %}{% endif %}{% endwith %}
+        <div class="mt-3">{{render_form(form)}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

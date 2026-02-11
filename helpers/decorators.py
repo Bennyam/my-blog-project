@@ -1,0 +1,11 @@
+from functools import wraps
+from flask import abort
+from flask_login import current_user
+
+def authorized(func):
+  @wraps(func)
+  def wrapper(*args, **kwargs):
+    if not current_user.is_admin:
+      abort(401)
+    return func(*args, **kwargs)
+  return wrapper

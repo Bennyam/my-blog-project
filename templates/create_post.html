@@ -1,0 +1,49 @@
+{% extends "base.html"%} {% from "bootstrap5/form.html" import render_form %} 
+{% block title %}Create post{% endblock %}
+{% block content %}
+<header class="mb-3">
+  {% if edit %}
+  <div
+    class="container-fluid bg-image py-5"
+    style="
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('{{post.img_url}}');
+    "
+  >
+  {% else %}
+  <div
+    class="container-fluid bg-image py-5"
+    style="
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('{{url_for('static', filename='img/new-post-bg.jpg')}}');
+    "
+  >
+  {% endif %}
+    <div class="p-5 text-center text-white">
+      <div class="container py-5">
+        {% if edit %}
+        <h1 class="display-1 fw-bolder">Edit Post</h1>
+        <p class="col-lg-8 mx-auto lead">
+          Edit this post an make it even better!
+        </p>
+        {% else %}
+        <h1 class="display-1 fw-bolder">New Post</h1>
+        <p class="col-lg-8 mx-auto lead">You will make a great post!</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</header>
+<div class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="mt-5">{{render_form(form)}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block scripts %} {{ckeditor.load()}}
+{{ckeditor.config(name='body')}} {% endblock %}

@@ -1,0 +1,111 @@
+.navbar {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.bg-image {
+  background-position: center;
+  background-size: cover;
+}
+
+.text-white {
+  color: white;
+}
+
+.avatar-image {
+  height: 50px;
+  border-radius: 2000px;
+}
+
+.post-preview a {
+  color: #212529;
+  text-decoration: none;
+}
+
+.post-preview a:hover {
+  color: #0085a1;
+}
+
+.post-preview a .post-title {
+  font-weight: 900;
+  font-size: 2.25rem;
+  margin-top: 1.875rem;
+  margin-bottom: 0.625rem;
+}
+
+.post-preview a .post-subtitle {
+  font-size: 1.75rem;
+  font-weight: 300;
+  margin-bottom: 0.625rem;
+}
+
+.post-preview .post-delete {
+  font-style: normal;
+  margin-left: 1rem;
+}
+
+.post-preview > .post-meta {
+  color: #6c757d;
+  font-size: 1.125rem;
+  font-style: italic;
+  margin-top: 0;
+}
+
+.comment {
+  padding-top: 20px;
+}
+.commentList {
+  padding: 0;
+  list-style: none;
+  max-height: 200px;
+  overflow: auto;
+}
+.commentList li {
+  margin: 0;
+  margin-top: 10px;
+}
+.commentList li > div {
+  display: table-cell;
+}
+.commenterImage {
+  width: 30px;
+  margin-right: 5px;
+  height: 100%;
+  float: left;
+}
+.commenterImage img {
+  width: 100%;
+  border-radius: 50%;
+}
+.commentText p {
+  margin: 0;
+}
+
+.sub-text {
+  color: #aaa;
+  font-family: verdana;
+  font-size: 13px;
+}
+
+@media (max-width: 990px) {
+  .navbar {
+    background-color: rgb(43 48 53);
+  }
+}
+
+:root {
+  --bs-primary: #0085a1;
+  --bs-primary-rgb: 0, 133, 161;
+
+  --bs-link-color: #0085a1;
+  --bs-link-hover-color: #006b80;
+}
+
+/* Voor alle .btn-primary varianten */
+.btn-primary {
+  --bs-btn-bg: #0085a1;
+  --bs-btn-border-color: #0085a1;
+  --bs-btn-hover-bg: #006b80;
+  --bs-btn-hover-border-color: #006b80;
+  --bs-btn-active-bg: #005a6b;
+  --bs-btn-active-border-color: #005a6b;
+}

@@ -1,0 +1,68 @@
+{% extends "base.html" %} {% from "bootstrap5/form.html" import render_form %}
+{% block title %}Read post{% endblock %} {% block content %}
+<header class="mb-3">
+  <div
+    class="container-fluid bg-image py-5"
+    style="
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('{{post.img_url}}');
+    "
+  >
+    <div class="p-5 text-center text-white">
+      <div class="container py-5">
+        <h1 class="display-1 fw-bolder">{{post.title}}</h1>
+        <p class="col-lg-8 mx-auto lead">{{post.subtitle}}</p>
+        <p class="col-lg-8 mx-auto lead fs-6 fst-italic">
+          Posted by {{post.author.name}} on {{post.date}}
+        </p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article class="mb-4">
+  <div class="container px-4 px-lg-5 mx-auto">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <p>{{post.body | safe}}</p>
+        <hr class="my-4" />
+        {% if logged_in and user.id == 1 %}
+        <a
+          class="btn btn-primary"
+          href="{{url_for('edit_post', post_id=post.id, user_id=user.id)}}"
+          >Edit</a
+        >
+        {% elif logged_in %}
+        <a
+          class="btn btn-primary"
+          href="{{url_for('comment', post_id=post.id)}}"
+          >Comment</a
+        >
+        {% endif %} {% if logged_in and form %}
+        <div class="mt-3">{{render_form(form)}}</div>
+        {% endif %}
+        <div class="comment">
+          <ul class="commentList">
+            {% for comment in comments %}
+            <li>
+              <div class="commenterImage">
+                <img
+                  src="{{ gravatar_url(comment.author.email)}}"
+                  alt="avatar"
+                />
+              </div>
+              <div class="commentText">
+                {{comment.text | safe}}
+                <span class="sub-text">{{comment.author.name}}</span>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+{%endblock%} {% block scripts %} {{ckeditor.load()}}
+{{ckeditor.config(name="text")}} {% endblock %}
